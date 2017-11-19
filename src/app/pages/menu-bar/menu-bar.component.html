@@ -1,0 +1,17 @@
+<header class="main-header">
+  <a class="site-logo" routerLink="/">
+    <img src="../../../assets/images/dayShare-200px.svg" style="width: 50px" alt="Day Share - Logo">
+  </a>
+  <a class="toggle-logo">
+    <img src="../../../assets/images/toggle-logo-200.svg" style="width: 50px" alt="Menu Toggle Logo" (click)="toggleNav()">
+  </a>
+
+  <ul class="nav" [class.menu-collapsed]="!menuCollapsed">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li *ngIf="!checkAuth()"><a routerLink="/signup"><strong>Sign Up</strong></a></li>
+    <li *ngIf="checkAuth()"><a routerLink="/profile">Profile</a></li>
+    <li *ngIf="!checkAuth()"><a routerLink="/login">Log In</a></li>
+    <li *ngIf="checkAuth()"><a (click)="logout()" class="logout">Log Out</a></li>
+  </ul>
+</header>

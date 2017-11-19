@@ -1,0 +1,56 @@
+<div class="container">
+  <div>
+    <h1 class="purple-primary">
+      Day Share
+    </h1>
+    <h3 class="purple-accent">
+      Find Your Co-op Day Care Group in Minutes!
+    </h3>
+  </div>
+</div>
+
+<!--<div class="container">-->
+    <!--<mat-card>-->
+      <!--<button mat-raised-button color="primary" (click)="onClick()">Primary</button>-->
+      <!--<button mat-raised-button color="accent" (click)="onClick()">Accent</button>-->
+      <!--<button mat-raised-button color="warn" (click)="onClick()">Warn</button>-->
+    <!--</mat-card>-->
+<!--</div>-->
+
+<div class="container">
+    <!--<mat-icon matTooltip="Your address will not be shared until you are matched with a group">info</mat-icon>-->
+    <mat-form-field class="input-width">
+      <input matInput placeholder="enter your home address" name="address" autocorrect="off" autocapitalize="off" spellcheck="off" class="search-bar address-input" #search pInputText [formControl]="searchControl">
+      <mat-icon matSuffix matTooltip="Your address will not be shared until you are matched with a group" color="primary">info outline</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="input-width">
+      <mat-select placeholder="Child's Age" [(ngModel)]="selectedAge">
+        <mat-option value="1">Less than 12 months</mat-option>
+        <mat-option value="2">Bewteen 12 and 24 months</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-icon-button (click)="submitSearch()">
+      <mat-icon aria-label="Seach Button" color="primary">search</mat-icon>
+    </button>
+</div>
+
+
+<div class="container">
+  <div class="search-results" *ngIf="results">
+    <h3>Search Results</h3>
+    <mat-card *ngFor="let result of results" class="result-card">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
+        <div fxFlex="50%" fxFlexOrder="1" class="details-container">
+          <h2><a routerLink="/profile/{{result._source.username}}">{{result._source.username}}</a></h2>
+          <h4>Child's Age(s): 3 years old</h4>
+          <!--<p>{{result._source.description}}</p>-->
+          <p><strong>{{result.sort[0].toFixed(1)}} miles away</strong><p>
+          <button mat-raised-button color="primary">See Profile</button>
+        </div>
+        <div fxFlex="50%" fxFlexOrder="2" class="image-container">
+          <img src="http://dummyimage.com/200x200.png/cc0000/ffffff" class="card-image">
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

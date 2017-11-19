@@ -1,1 +1,137 @@
 /* You can add global styles to this file, and also import other style files */
+//@import '../node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import '~@angular/material/theming';
+
+$dayshare-typography: mat-typography-config(
+  $font-family: "Noto Sans"
+);
+
+$primary-palete: (
+  50 : #f9f3fc,
+  100 : #f0e1f8,
+  200 : #e7cef4,
+  300 : #ddbaef,
+  400 : #d5abeb,
+  500 : #ce9ce8,
+  600 : #c994e5,
+  700 : #c28ae2,
+  800 : #bc80de,
+  900 : #b06ed8,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #f7ebff,
+  A700 : #edd1ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$secondary-palete: (
+  50 : #ebe1f4,
+  100 : #ccb5e4,
+  200 : #aa84d2,
+  300 : #8852c0,
+  400 : #6f2db3,
+  500 : #5508a5,
+  600 : #4e079d,
+  700 : #440693,
+  800 : #3b048a,
+  900 : #2a0279,
+  A100 : #bea7ff,
+  A200 : #9874ff,
+  A400 : #7341ff,
+  A700 : #6027ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+
+
+@include mat-core($dayshare-typography);
+
+
+
+$dayshare-theme-primary: mat-palette($primary-palete);
+$dayshare-theme-accent: mat-palette($secondary-palete);
+$dayshare-theme-warn: mat-palette($mat-red);
+
+$dayshare-theme: mat-light-theme(
+  $dayshare-theme-primary,
+  $dayshare-theme-accent,
+  $dayshare-theme-warn
+);
+
+@include angular-material-theme($dayshare-theme);
+
+
+body {
+  color: #797e83;
+  font-size: 16px;
+  margin: 0;
+  font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.purple-primary {
+  color: #CE9CE8;
+}
+
+.purple-accent {
+  color: #5508a5;
+}
+
+.myTooltip {
+  background: tomato;
+}
+
+
+/* --------------------------
+  Media Queries
+--------------------------- */
+
+@media (min-width: 769px) {
+  .container {
+    width: 70%;
+  }
+
+  .myTooltip {
+    background: tomato;
+    white-space: pre-line;
+  }
+}

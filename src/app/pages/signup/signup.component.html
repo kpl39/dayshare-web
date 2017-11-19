@@ -1,0 +1,57 @@
+<div class="container">
+  <div>
+    <h1 class="purple-primary">Day Share</h1>
+    <h3 class="purple-accent">Sign up to start connecting with other parents in your area.</h3>
+  </div>
+</div>
+
+<div class="container">
+  <form [formGroup]="userSignupForm">
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput placeholder="Email Address" formControlName="emailAddress" required>
+        <mat-error *ngIf="userSignupForm.controls.emailAddress.errors?.required && userSignupForm.controls.emailAddress.touched">Email Address Required</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.emailAddress.hasError('pattern')">Please enter a valid Email Address</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username" required>
+        <mat-error *ngIf="userSignupForm.controls.username.errors?.required && userSignupForm.controls.username.touched">Username Required</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.username.hasError('pattern')">Username can only be letters and numbers</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password" required>
+        <mat-icon matSuffix *ngIf="userSignupForm.controls.password.hasError('pattern')"
+                  matTooltip="Password must have :&#13;1 Capital Letter&#13;1 Lowercase Letter&#13;1 Number&#13;6 - 20 Characters"
+                  matTooltipClass="myTooltip"
+                  color="primary">
+          lock
+        </mat-icon>
+        <mat-error *ngIf="userSignupForm.controls.password.errors?.required && userSignupForm.controls.password.touched">Password Required</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.password.hasError('pattern')">Password does not meet requirements</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" required>
+        <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.required && userSignupForm.controls.confirmPassword.touched">Please confirm password</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.MatchPassword">Passwords must match</mat-error>
+      </mat-form-field>
+      <div class="button-container">
+        <button mat-raised-button class="full-width white-text" color="primary" [disabled]="!userSignupForm.valid">
+          <mat-icon>email</mat-icon>
+          Email Signup
+        </button>
+        <button mat-raised-button class="full-width facebook white-text">
+          <i class="mdi mdi-facebook-box mdi-24px"></i>
+          Facebook Signup
+        </button>
+        <button mat-raised-button class="full-width google white-text">
+          <i class="mdi mdi-google mdi-24px iconAlign"></i>
+          Google Signup
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
