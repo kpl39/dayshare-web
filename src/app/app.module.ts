@@ -26,6 +26,7 @@ import { RouterDataService } from './services/router-data.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AgmCoreModule } from '@agm/core';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
@@ -60,7 +61,8 @@ const firebaseConfig = {
     ProfileComponent,
     MenuBarComponent,
     AboutComponent,
-    SignupDetailsComponent
+    SignupDetailsComponent,
+    DashboardComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
