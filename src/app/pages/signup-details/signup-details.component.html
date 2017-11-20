@@ -1,0 +1,85 @@
+<div class="container">
+  <mat-horizontal-stepper >
+    <mat-step>
+      <form [formGroup]="parentForm">
+        <ng-template matStepLabel>Parent Information</ng-template>
+          <div class="input-container">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="First Name" formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Last Name" formControlName="lastName" required>
+            </mat-form-field>
+          </div>
+          <div class="input-container">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Address" formControlName="address1" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Address 2" formControlName="address2">
+            </mat-form-field>
+          </div>
+          <div class="input-container">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="City" formControlName="city" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="State" formControlName="state" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Zip Code" formControlName="zipcode" required>
+            </mat-form-field>
+          </div>
+        <div>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Child Information</ng-template>
+      <!--<button mat-raised-button (click)="addChildForm()" color="primary">-->
+        <!--<mat-icon>add</mat-icon>-->
+        <!--Add Child-->
+      <!--</button>-->
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let childForm of childrenForm" class="expand-by-default">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{childForm.controls.firstName.value}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+              <form [formGroup]="childForm">
+                <mat-form-field >
+                  <input matInput placeholder="First Name" formControlName="firstName" required>
+                </mat-form-field>
+
+                <mat-form-field >
+                  <input matInput placeholder="Last Name" formControlName="lastName" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <button mat-mini-fab color="primary" (click)="addChildForm()"><mat-icon>add</mat-icon></button>
+              </form>
+            </mat-panel-description>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

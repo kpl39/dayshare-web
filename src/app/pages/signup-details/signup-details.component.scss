@@ -1,0 +1,21 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.full-width {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* --------------------------
+  Media Queries
+--------------------------- */
+
+@media (min-width: 769px) {
+  .input-container {
+    flex-direction: row;
+  }
+}

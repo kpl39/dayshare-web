@@ -9,13 +9,13 @@
   <form [formGroup]="userSignupForm">
     <div class="form-container">
       <mat-form-field>
-        <input matInput placeholder="Email Address" formControlName="emailAddress" required>
+        <input matInput placeholder="Email Address" formControlName="emailAddress" required [(ngModel)]="signupForm.emailAddress">
         <mat-error *ngIf="userSignupForm.controls.emailAddress.errors?.required && userSignupForm.controls.emailAddress.touched">Email Address Required</mat-error>
         <mat-error *ngIf="userSignupForm.controls.emailAddress.hasError('pattern')">Please enter a valid Email Address</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username" required>
+        <input matInput placeholder="Username" formControlName="username" required [(ngModel)]="signupForm.username">
         <mat-error *ngIf="userSignupForm.controls.username.errors?.required && userSignupForm.controls.username.touched">Username Required</mat-error>
         <mat-error *ngIf="userSignupForm.controls.username.hasError('pattern')">Username can only be letters and numbers</mat-error>
       </mat-form-field>
@@ -33,20 +33,20 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" required>
+        <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" required [(ngModel)]="signupForm.password">
         <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.required && userSignupForm.controls.confirmPassword.touched">Please confirm password</mat-error>
         <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.MatchPassword">Passwords must match</mat-error>
       </mat-form-field>
       <div class="button-container">
-        <button mat-raised-button class="full-width white-text" color="primary" [disabled]="!userSignupForm.valid">
+        <button mat-raised-button class="full-width white-text" color="primary" [disabled]="!userSignupForm.valid" (click)="createEmailUser()">
           <i class="mdi mdi-email mdi-24px"></i>
           Email Signup
         </button>
-        <button mat-raised-button class="full-width facebook white-text">
+        <button mat-raised-button class="full-width facebook white-text" (click)="facebookLogin()">
           <i class="mdi mdi-facebook-box mdi-24px"></i>
           Facebook Signup
         </button>
-        <button mat-raised-button class="full-width google white-text">
+        <button mat-raised-button class="full-width google white-text" (click)="googleLogin()">
           <i class="mdi mdi-google mdi-24px iconAlign"></i>
           Google Signup
         </button>

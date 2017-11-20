@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { PasswordValidation } from '../../services/validators/password-validation.service';
 
 import { AuthService } from '../../services/auth.service';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterDataService } from '../../services/router-data.service';
+import { Router } from '@angular/router';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 const USERNAME_REGEX = /^[a-zA-Z0-9-].{4,20}$/;
-const ZIP_REGEX = /^[0-9]{5}$/;
+
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
 
   userAuth: any;
   userSignupForm: any;
+  signupForm: any = {};
 
 
 
@@ -27,6 +29,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private dataService: RouterDataService,
     private router: Router
   ) { }
 
@@ -43,19 +46,22 @@ export class SignupComponent implements OnInit {
   }
 
 
-  onSubmit(formValue) {
-    console.log('FORM VALUE', formValue);
-    const email = formValue.emailAddress;
-    const password = formValue.password;
-    this.createEmailUser(email, password);
-  }
+  // onSubmit(formValue) {
+  //   console.log('FORM VALUE', formValue);
+  //   const email = formValue.emailAddress;
+  //   const password = formValue.password;
+  //   this.createEmailUser(email, password);
+  // }
 
 
-  createEmailUser(email, password) {
+  createEmailUser() {
+    const email = this.signupForm.emailAddress;
+    const password = this.signupForm.password;
     this.authService.createEmailUser(email, password)
       .then((res) => {
         console.log('RES FROM CREATE USER ', res);
-        this.router.navigate(['/profile']);
+        this.dataService.setSignupData(this.signupForm);
+        this.router.navigate(['/signupdetails']);
       });
   }
 

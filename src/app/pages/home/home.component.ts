@@ -60,6 +60,8 @@ export class HomeComponent implements OnInit {
   }
 
   submitSearch() {
+
+    console.log('search service called');
     const pkg = {
       latitude: this.latitude,
       longitude: this.longitude,

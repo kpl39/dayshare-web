@@ -3,7 +3,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule, MatGridListModule, MatExpansionModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule,
+         MatTooltipModule, MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { RouterModule, Routes, ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,20 +16,25 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { MenuBarComponent } from './pages/menu-bar/menu-bar.component';
+import { AboutComponent } from './pages/about/about.component';
+import { SignupDetailsComponent } from './pages/signup-details/signup-details.component';
 
 import { AuthService } from './services/auth.service';
 import { SearchService } from './services/search.service';
+import { RouterDataService } from './services/router-data.service';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AgmCoreModule } from '@agm/core';
-import { AboutComponent } from './pages/about/about.component';
+
+
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signupdetails', component: SignupDetailsComponent },
   { path: 'profile/:username', component: ProfileComponent },
   { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -53,7 +59,8 @@ const firebaseConfig = {
     SignupComponent,
     ProfileComponent,
     MenuBarComponent,
-    AboutComponent
+    AboutComponent,
+    SignupDetailsComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -66,11 +73,12 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
-    MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule, MatGridListModule, MatExpansionModule,
+    MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule,
+    MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule
   ],
-  providers: [ AuthService, SearchService, RouterLink ],
+  providers: [ AuthService, SearchService, RouterLink, RouterDataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
