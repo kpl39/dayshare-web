@@ -150,7 +150,7 @@ export class AuthService {
 
   getParentProfileByUsername(username) {
     return new Promise(resolve => {
-      this.http.get('https://server.dayshare.co/parents/search/findByUserame?username=' + username + '&projection=parentFullProjection')
+      this.http.get('https://server.dayshare.co/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
         .subscribe((res: any) => {
           this.profile = res._embedded.parents[0];
           resolve(this.profile);
