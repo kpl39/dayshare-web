@@ -24,7 +24,7 @@ export class AuthService {
 
   checkEmailStatus(email) {
     return new Promise(resolve => {
-      this.http.get('http://dayshare.us-east-2.elasticbeanstalk.com/parents/search/findByEmail?email=' + email)
+      this.http.get('https://server.dayshare.co/parents/search/findByEmail?email=' + email)
       // this.http.get('http://localhost:8080/parents/search/findByEmail?email=' + email)
         .subscribe((res: any) => {
           this.profile = res.json()._embedded.parents[0];
@@ -129,7 +129,7 @@ export class AuthService {
 
   addUser(pkg) {
     return new Promise(resolve => {
-      this.http.post('http://dayshare.us-east-2.elasticbeanstalk.com/parents', pkg)
+      this.http.post('https://server.dayshare.co/parents', pkg)
         .subscribe((res: any) => {
           console.log('RES FROM ADD USER', res.json());
         });
@@ -138,7 +138,7 @@ export class AuthService {
 
   getParentInfo(email) {
     return new Promise(resolve => {
-      this.http.get('http://dayshare.us-east-2.elasticbeanstalk.com/parents/search/findByEmail?email=' + email + '&projection=parentFullProjection')
+      this.http.get('https://server.dayshare.co/parents/search/findByEmail?email=' + email + '&projection=parentFullProjection')
 
       // this.http.get('http://localhost:8080/parents/search/findByEmail?email=' + email)
         .subscribe((res: any) => {
@@ -150,7 +150,7 @@ export class AuthService {
 
   getParentProfileByUsername(username) {
     return new Promise(resolve => {
-      this.http.get('http://dayshare.us-east-2.elasticbeanstalk.com/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
+      this.http.get('https://server.dayshare.co/parents/search/findByUserame?username=' + username + '&projection=parentFullProjection')
         .subscribe((res: any) => {
           this.profile = res._embedded.parents[0];
           resolve(this.profile);
