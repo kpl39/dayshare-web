@@ -27,9 +27,9 @@ export class AuthService {
       this.http.get('https://server.dayshare.co/parents/search/findByEmail?email=' + email)
       // this.http.get('http://localhost:8080/parents/search/findByEmail?email=' + email)
         .subscribe((res: any) => {
-          this.profile = res.json()._embedded.parents[0];
+          this.profile = res._embedded.parents[0];
           console.log('USER AFTER EMAIL STATUS', this.userAuth);
-          if (res.json().page.totalElements < 1) {
+          if (res.page.totalElements < 1) {
             resolve(false);
           } else {
             resolve(true);
@@ -127,11 +127,12 @@ export class AuthService {
   //     })
   // }
 
-  addUser(pkg) {
+  addParent(pkg) {
     return new Promise(resolve => {
-      this.http.post('https://server.dayshare.co/parents', pkg)
+      this.http.post('http://localhost:8080/api/parents/addparent', pkg)
         .subscribe((res: any) => {
-          console.log('RES FROM ADD USER', res.json());
+          console.log('RES FROM ADD USER', res);
+          resolve(res);
         });
     });
   }
@@ -157,5 +158,6 @@ export class AuthService {
         });
     });
   }
+
 
 }

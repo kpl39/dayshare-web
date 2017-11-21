@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule,
-         MatTooltipModule, MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+         MatTooltipModule, MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule,
+         MatNativeDateModule, MatProgressSpinnerModule } from '@angular/material';
 import { RouterModule, Routes, ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -76,7 +77,7 @@ const firebaseConfig = {
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule,
-    MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule,
+    MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule
   ],

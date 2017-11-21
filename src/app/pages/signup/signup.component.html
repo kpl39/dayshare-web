@@ -9,19 +9,19 @@
   <form [formGroup]="userSignupForm">
     <div class="form-container">
       <mat-form-field>
-        <input matInput placeholder="Email Address" formControlName="emailAddress" required [(ngModel)]="signupForm.emailAddress">
+        <input matInput placeholder="Email Address" formControlName="emailAddress" [(ngModel)]="signupForm.emailAddress">
         <mat-error *ngIf="userSignupForm.controls.emailAddress.errors?.required && userSignupForm.controls.emailAddress.touched">Email Address Required</mat-error>
-        <mat-error *ngIf="userSignupForm.controls.emailAddress.hasError('pattern')">Please enter a valid Email Address</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.emailAddress.hasError('pattern') && userSignupForm.controls.emailAddress.touched">Please enter a valid Email Address</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username" required [(ngModel)]="signupForm.username">
+        <input matInput placeholder="Username" formControlName="username" [(ngModel)]="signupForm.username">
         <mat-error *ngIf="userSignupForm.controls.username.errors?.required && userSignupForm.controls.username.touched">Username Required</mat-error>
-        <mat-error *ngIf="userSignupForm.controls.username.hasError('pattern')">Username can only be letters and numbers</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.username.hasError('pattern') && userSignupForm.controls.username.touched">Username can only be letters and numbers</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Password" type="password" formControlName="password" required>
+        <input matInput placeholder="Password" type="password" formControlName="password">
         <mat-icon matSuffix *ngIf="userSignupForm.controls.password.hasError('pattern')"
                   matTooltip="Password must have :&#13;1 Capital Letter&#13;1 Lowercase Letter&#13;1 Number&#13;6 - 20 Characters"
                   matTooltipClass="myTooltip"
@@ -29,13 +29,13 @@
           lock
         </mat-icon>
         <mat-error *ngIf="userSignupForm.controls.password.errors?.required && userSignupForm.controls.password.touched">Password Required</mat-error>
-        <mat-error *ngIf="userSignupForm.controls.password.hasError('pattern')">Password does not meet requirements</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.password.hasError('pattern') && userSignupForm.controls.password.touched">Password does not meet requirements</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" required [(ngModel)]="signupForm.password">
+        <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" [(ngModel)]="signupForm.password">
         <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.required && userSignupForm.controls.confirmPassword.touched">Please confirm password</mat-error>
-        <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.MatchPassword">Passwords must match</mat-error>
+        <mat-error *ngIf="userSignupForm.controls.confirmPassword.errors?.MatchPassword && userSignupForm.controls.confirmPassword.touched">Passwords must match</mat-error>
       </mat-form-field>
       <div class="button-container">
         <button mat-raised-button class="full-width white-text" color="primary" [disabled]="!userSignupForm.valid" (click)="createEmailUser()">

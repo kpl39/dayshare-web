@@ -1,8 +1,18 @@
 <div class="container">
+  <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
   <mat-horizontal-stepper >
-    <mat-step>
+    <!--[linear]="true"-->
+    <mat-step [stepControl]="parentForm">
       <form [formGroup]="parentForm">
         <ng-template matStepLabel>Parent Information</ng-template>
+          <div class="input-container">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Username" formControlName="username" required>
+            </mat-form-field>
+          </div>
           <div class="input-container">
             <mat-form-field class="full-width">
               <input matInput placeholder="First Name" formControlName="firstName" required>
@@ -23,8 +33,13 @@
             <mat-form-field class="full-width">
               <input matInput placeholder="City" formControlName="city" required>
             </mat-form-field>
+            <!--<mat-form-field class="full-width">-->
+              <!--<input matInput placeholder="State" formControlName="state" required>-->
+            <!--</mat-form-field>-->
             <mat-form-field class="full-width">
-              <input matInput placeholder="State" formControlName="state" required>
+              <mat-select placeholder="State" formControlName="state" required>
+                <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+              </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width">
               <input matInput placeholder="Zip Code" formControlName="zipcode" required>
@@ -35,7 +50,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step>
+    <mat-step [stepControl]="childrenForm[0]">
       <ng-template matStepLabel>Child Information</ng-template>
       <!--<button mat-raised-button (click)="addChildForm()" color="primary">-->
         <!--<mat-icon>add</mat-icon>-->
@@ -60,7 +75,14 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate">
+                  <mat-select placeholder="Gender" formControlName="gender" required>
+                    <mat-option value="M">Boy</mat-option>
+                    <mat-option value="F">Girl</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate" required>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -70,15 +92,44 @@
         </mat-expansion-panel>
       </mat-accordion>
 
-      <div>
-        <button mat-button matStepperNext>Next</button>
+      <div class="button-spacing">
+        <button mat-raised-button button matStepperNext color="primary">Next</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
+      <ng-template matStepLabel>Summary</ng-template>
+      <mat-card class="card-spacing">
+        <h3 class="purple-primary">Parent Information</h3>
+          <ul>
+            <li><strong>Email:</strong> {{parentForm.controls.email.value}}</li>
+            <li><strong>Username:</strong> {{parentForm.controls.username.value}}</li>
+            <li><strong>First Name:</strong> {{parentForm.controls.firstName.value}}</li>
+            <li><strong>Last Name:</strong> {{parentForm.controls.lastName.value}}</li>
+            <li><strong>Address 1:</strong> {{parentForm.controls.address1.value}}</li>
+            <li><strong>Address 2:</strong> {{parentForm.controls.address2.value}}</li>
+            <li><strong>City:</strong> {{parentForm.controls.city.value}}</li>
+            <li><strong>State:</strong> {{parentForm.controls.state.value}}</li>
+            <li><strong>Zip Code:</strong> {{parentForm.controls.zipcode.value}}</li>
+          </ul>
+      </mat-card>
+      <mat-card>
+        <h3 class="purple-primary">Children</h3>
+        <ul *ngFor="let childForm of childrenForm" class="list-spacing">
+          <li><strong>First Name:</strong> {{childForm.controls.firstName.value}}</li>
+          <li><strong>Last Name:</strong> {{childForm.controls.lastName.value}}</li>
+          <li><strong>Gender:</strong> {{childForm.controls.gender.value}}</li>
+          <li><strong>Birth Date:</strong> {{childForm.controls.birthDate.value | date}}</li>
+        </ul>
+
+      </mat-card>
+
+
       <div>
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperPrevious color="primary" class="button-spacing">Back</button>
+        <button mat-raised-button (click)="submitForm()" color="accent" class="button-spacing">
+          Submit
+          <mat-icon>done</mat-icon>
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

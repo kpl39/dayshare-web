@@ -58,9 +58,14 @@ export class SignupComponent implements OnInit {
     const email = this.signupForm.emailAddress;
     const password = this.signupForm.password;
     this.authService.createEmailUser(email, password)
-      .then((res) => {
+      .then((res: any) => {
+        const pkg = {
+          email: res.email,
+          username: this.signupForm.username,
+          userid: res.uid
+        };
         console.log('RES FROM CREATE USER ', res);
-        this.dataService.setSignupData(this.signupForm);
+        this.dataService.setSignupData(pkg);
         this.router.navigate(['/signupdetails']);
       });
   }
@@ -79,16 +84,14 @@ export class SignupComponent implements OnInit {
             } else {
               const pkg = {
                 email: res.user.email,
-                profileurl: res.user.photoURL,
                 username: res.user.displayName,
-                userid: res.user.uid
+                userid: res.user.uid,
+                facebookId: res.additionalUserInfo.profile.id,
+                profileImageUrl:  res.user.photoURL
               };
-              console.log('user not found, adding now', pkg);
-              this.authService.addUser(pkg)
-                  .then(() => {
-                      this.getAuth();
-                      this.router.navigate(['/dashboard']);
-                  });
+              this.dataService.setSignupData(pkg);
+              this.router.navigate(['/signupdetails']);
+              console.log('user not found, getting more details', pkg);
             }
           });
       });
@@ -104,21 +107,18 @@ export class SignupComponent implements OnInit {
             if (userExists) {
               this.getAuth();
               this.router.navigate(['/profile']);
-
             } else {
 
               const pkg = {
                 email: res.user.email,
                 profileImageUrl: res.user.photoURL,
+                googleId: res.additionalUserInfo.profile.id,
                 username: res.user.displayName,
                 userId: res.user.uid
               };
-              console.log('user not found, adding now', pkg);
-              this.authService.addUser(pkg)
-                .then(() => {
-                  this.getAuth();
-                  this.router.navigate(['/profile']);
-                });
+              this.dataService.setSignupData(pkg);
+              this.router.navigate(['/signupdetails']);
+              console.log('user not found, getting more details', pkg);
             }
           });
       });
