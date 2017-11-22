@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterDataService } from '../../services/router-data.service';
 import { AuthService } from '../../services/auth.service';
 import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 const stockProfile = 'https://s3.us-east-2.amazonaws.com/dayshare/images/dayShareStockProfile.png';
 
@@ -21,14 +22,13 @@ export class SignupDetailsComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private dataService: RouterDataService,
+    private router: Router,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     if (this.dataService.getSignupData() ) {
       this.signupData = this.dataService.getSignupData();
-    } else {
-      this.signupData = {email: 'plinhardt@gmail.com', username: 'pat420'};
     }
     this.states = this.dataService.getStates();
     this.parentForm = this.fb.group(
@@ -92,12 +92,20 @@ export class SignupDetailsComponent implements OnInit {
       };
       pkg.children.push(form);
     });
+    console.log('Submission Package', pkg);
     this.loading = true;
     this.authService.addParent(pkg)
       .then((res) => {
         this.loading = false;
+        this.dataService.setProfile(res);
+        this.router.navigate(['/dashboard']);
         console.log('res from add parent', res);
       });
+  }
+
+  skipSetup() {
+    console.log('Skipping Setup');
+    this.router.navigate(['/dashboard']);
   }
 
 }

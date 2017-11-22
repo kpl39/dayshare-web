@@ -31,8 +31,17 @@ ul, li {
   border-bottom-color: #CE9CE8;
 }
 
-.spinner {
+.loading-container {
+  text-align: center;
+}
+
+.loading {
   margin: auto;
+}
+
+.skip {
+  color: #CE9CE8;
+  cursor: pointer;
 }
 
 /* --------------------------

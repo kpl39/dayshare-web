@@ -1,5 +1,9 @@
 <div class="container">
-  <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+  <h3 class="purple-primary">Please complete your sign up</h3>
+  <p>You can also <a (click)="skipSetup()" class="skip">skip</a> and fill out your profile later.</p>
+  <div class="loading-container" *ngIf="loading">
+    <img src="../../../assets/images/dayShareLoading.gif" class="loading">
+  </div>
   <mat-horizontal-stepper >
     <!--[linear]="true"-->
     <mat-step [stepControl]="parentForm">
@@ -46,7 +50,8 @@
             </mat-form-field>
           </div>
         <div>
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
+          <button
+            matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>

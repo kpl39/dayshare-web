@@ -1,18 +1,43 @@
 import { Injectable } from '@angular/core';
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class RouterDataService {
 
   signupData: any;
+  loginData: any;
+  profile: any;
 
-  constructor() { }
+  profileDataLoaded: Subject<any> = new Subject<any>();
+
+  constructor() {
+    this.profileDataLoaded.subscribe((value) => {
+      this.profile = value;
+    });
+  }
+
+  getSignupData() {
+    return this.signupData;
+  }
 
   setSignupData(data) {
     this.signupData = data;
   }
 
-  getSignupData() {
-    return this.signupData;
+  getLoginData() {
+    return this.loginData;
+  }
+
+  setLoginData(data) {
+    this.loginData = data;
+  }
+
+  getProfile() {
+    return this.profile;
+  }
+
+  setProfile(data) {
+    this.profileDataLoaded.next(data);
   }
 
   getStates() {

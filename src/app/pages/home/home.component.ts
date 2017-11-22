@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public age: number;
-  public ages: Array<any> = [{value: null, label: 'Child\'s Age'}, {value: 0, label: 'Less than 1 year'}, {value: 1, label: '12 to 24 months'}, {value: 2, label: '2 years old'}, {value: 3, label: '3 years old'}, {value: 4, label: '4 years old'}, {value: 5, label: '5 years old'}, {value: 6, label: '6 years old'}, {value: 7, label: '7 years old'}, {value: 8, label: '8 years old'}, {value: 9, label: '9 years old'}, {value: 10, label: 'Over 10 years old'}];
+  public ages: Array<any> = [{value: 0, label: 'Less than 1 year'}, {value: 1, label: '12 to 24 months'}, {value: 2, label: '2 years old'}, {value: 3, label: '3 years old'}, {value: 4, label: '4 years old'}, {value: 5, label: '5 years old'}, {value: 6, label: '6 years old'}, {value: 7, label: '7 years old'}, {value: 8, label: '8 years old'}, {value: 9, label: '9 years old'}, {value: 10, label: 'Over 10 years old'}];
   public distance: number;
   public distances: Array<any> = [{value: null, label: 'Distance'}, {value: 1, label: 'Less than 1 Mile'}, {value: 2, label: 'Less than 2 Miles'}, {value: 3, label: 'Less than 3 Miles'}, {value: 4, label: 'Less than 4 Miles'}, {value: 5, label: 'Less than 5 Miles'}, {value: 6, label: 'Less than 6 Miles'}, {value: 7, label: 'Less than 7 Miles'}, {value: 8, label: 'Less than 8 Miles'}, {value: 9, label: 'Less than 9 Miles'}, {value: 10, label: 'Less than 10 Miles'}];
   public advOpsToggle: Boolean = false;

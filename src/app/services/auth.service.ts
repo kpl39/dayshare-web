@@ -129,7 +129,7 @@ export class AuthService {
 
   addParent(pkg) {
     return new Promise(resolve => {
-      this.http.post('http://localhost:8080/api/parents/addparent', pkg)
+      this.http.post('https://server.dayshare.co/api/parents/addparent', pkg)
         .subscribe((res: any) => {
           console.log('RES FROM ADD USER', res);
           resolve(res);
@@ -158,6 +158,21 @@ export class AuthService {
         });
     });
   }
+
+  getParentProfileByUserId(userId) {
+    return new Promise(resolve => {
+      // this.http.get('https://server.dayshare.co/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
+      this.http.get('https://server.dayshare.co/parents/search/findByUserId?userId=' + userId + '&projection=parentFullProjection')
+        .subscribe((res: any) => {
+          this.profile = res._embedded.parents[0];
+          resolve(this.profile);
+        });
+    });
+  }
+
+
+
+
 
 
 }

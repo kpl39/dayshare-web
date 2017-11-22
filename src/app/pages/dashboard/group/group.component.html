@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Please Choose Your Availability to Watch the Group</h2>
+  <p>We are currently only accommodating Monday through Friday Groups.</p>
+  <p>Weekend groups are in the works! Check back soon.</p>
+  <div class="availability-container">
+    <mat-card *ngFor="let day of week">
+      <h3 class="purple-primary card-header">{{day.day}}</h3>
+      <mat-radio-group class="radio-group" [(ngModel)]="day.preference">
+        <mat-radio-button class="radio-label-size" *ngFor="let preference of preferences"
+                          [value]="preference.value">{{preference.display}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+  </div>
+</div>

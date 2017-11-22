@@ -5,11 +5,13 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule,
          MatTooltipModule, MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule,
-         MatNativeDateModule, MatProgressSpinnerModule } from '@angular/material';
+         MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatTabsModule, MatListModule } from '@angular/material';
 import { RouterModule, Routes, ActivatedRoute, RouterLink } from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -19,18 +21,20 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MenuBarComponent } from './pages/menu-bar/menu-bar.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SignupDetailsComponent } from './pages/signup-details/signup-details.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+  import { EditProfileComponent } from './pages/dashboard/edit-profile/edit-profile.component';
+  import { ChildrenComponent } from './pages/dashboard/children/children.component';
+  import { GroupComponent } from './pages/dashboard/group/group.component';
+  import { SettingsComponent } from './pages/dashboard/settings/settings.component';
+  import { HelpComponent } from './pages/dashboard/help/help.component';
 
 import { AuthService } from './services/auth.service';
 import { SearchService } from './services/search.service';
 import { RouterDataService } from './services/router-data.service';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AgmCoreModule } from '@agm/core';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
-
-
+import { ImageService } from './services/image.service';
+import { ChildService } from './services/child.service';
+import { ParentService } from './services/parent.service';
+import { GroupService } from './services/group.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -39,6 +43,16 @@ const appRoutes: Routes = [
   { path: 'signupdetails', component: SignupDetailsComponent },
   { path: 'profile/:username', component: ProfileComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'dashboard', component: DashboardComponent,
+    children: [
+      { path: 'editprofile', component: EditProfileComponent },
+      { path: 'children', component: ChildrenComponent },
+      { path: 'group', component: GroupComponent },
+      { path: 'settings', component: SettingsComponent},
+      { path: 'help', component: HelpComponent},
+      { path: '', redirectTo: 'editprofile', pathMatch: 'full' },
+    ]
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -63,7 +77,12 @@ const firebaseConfig = {
     MenuBarComponent,
     AboutComponent,
     SignupDetailsComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditProfileComponent,
+    ChildrenComponent,
+    GroupComponent,
+    SettingsComponent,
+    HelpComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -77,11 +96,12 @@ const firebaseConfig = {
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule,
-    MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule
+    MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule,
+    MatRadioModule, MatTabsModule, MatListModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule
   ],
-  providers: [ AuthService, SearchService, RouterLink, RouterDataService ],
+  providers: [ AuthService, SearchService, RouterLink, RouterDataService, ImageService, ChildService, ParentService, GroupService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

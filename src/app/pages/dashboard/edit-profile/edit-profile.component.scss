@@ -1,0 +1,65 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.primary-form-container {
+  width: 100%;
+}
+
+.secondary-form-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+}
+
+.primary-image-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.secondary-image-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.description-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.profile-image {
+  width: 200px;
+}
+
+.change-image-buton {
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.green {
+  color: green;
+}
+
+/* --------------------------
+  Media Queries
+--------------------------- */
+
+@media (min-width: 769px) {
+  .profile-container {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,57 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.small-margin {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.meta-card-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+//.list-item {
+//  cursor: pointer;
+//
+//}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+mat-list-item:hover {
+  background-color: #CE9CE8;
+}
+
+a:hover {
+  color: #0b0b0b;
+}
+
+.edit-icon {
+  float: right;
+  cursor: pointer;
+}
+
+.pink {
+  color: #CE9CE8;
+}
+
+
+
+///* --------------------------
+//  Media Queries
+//--------------------------- */
+//
+//@media (min-width: 769px) {
+//  .meta-card-container {
+//    flex-direction: row;
+//  }
+//}

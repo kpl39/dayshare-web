@@ -1,0 +1,51 @@
+.availability-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+
+
+/* --------------------------
+  Media Queries
+--------------------------- */
+
+@media (min-width: 769px) {
+  .availability-container {
+    flex-direction: row;
+  }
+
+  .radio-label-size {
+    font-size: 10px;
+  }
+
+  mat-card {
+    padding: 7px;
+  }
+
+  .card-header {
+    font-size: 0.9em;
+  }
+
+}
+
+
+@media (min-width: 1100px) {
+  .radio-label-size {
+    font-size: 14px;
+  }
+
+  mat-card {
+    padding: 12px;
+  }
+
+  .card-header {
+    font-size: 1.17em;
+  }
+
+
+}

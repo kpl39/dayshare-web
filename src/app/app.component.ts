@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,11 @@ export class AppComponent {
   selectedAge: number;
   address: string;
 
-  constructor() {}
-
-  onClick() {
-    console.log('CLICKED');
+  constructor(
+    private authService: AuthService
+  ) {
+    this.authService.getAuthState();
   }
+
+
 }

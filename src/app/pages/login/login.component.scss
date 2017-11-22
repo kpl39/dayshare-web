@@ -1,0 +1,46 @@
+.form-container {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.button-spacing {
+  margin-bottom: 5px;
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.google {
+  background-color: #dd4b39;
+}
+
+.white-text {
+  color: white;
+}
+
+
+//@media (min-width: 769px) {
+//  .form-container {
+//    flex-direction: row;
+//  }
+//
+//  .button-container {
+//    flex-direction: row;
+//  }
+//}

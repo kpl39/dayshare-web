@@ -1,0 +1,64 @@
+<div class="container">
+  <div [hidden]="profile" class="loading-icon"></div>
+  <div *ngIf="profile" class="profile-container">
+    <div class="primary-form-container">
+      <form [formGroup]="parentForm">
+        <div class="secondary-form-container">
+          <h1 class="purple-primary">Edit Profile</h1>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email" [(ngModel)]="profile.email">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" formControlName="username" [(ngModel)]="profile.username">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First Name" formControlName="firstName" [(ngModel)]="profile.firstName">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last Name" formControlName="lastName" [(ngModel)]="profile.lastName">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Address" formControlName="address1" [(ngModel)]="profile.address1">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Address 2" formControlName="address2" [(ngModel)]="profile.address2">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="City" formControlName="city" [(ngModel)]="profile.city">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="State" formControlName="state" [(ngModel)]="profile.state">
+              <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Zip Code" formControlName="zipcode" [(ngModel)]="profile.zipcode">
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div class="primary-image-container">
+      <div class="secondary-image-container">
+        <img src={{profile.profileImageUrl}} class="profile-image">
+        <button mat-raised-button color="primary" (click)="chooseImage()" class="change-image-buton">
+          Change Image
+        </button>
+        <input type="file" #file id="fileUpload" (change)="uploadFile(file.files)"/>
+
+        <button *ngIf="!avatarFinished" mat-raised-button color="accent" class="change-image-buton" (click)="saveImage()" [disabled]="!validFile">
+          Save Image
+        </button>
+        <button *ngIf="avatarFinished" mat-raised-button color="accent" class="change-image-buton">
+           Upload Complete
+          <mat-icon class="green">done</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="profile" class="description-container">
+    <mat-form-field class="full-width">
+      <textarea rows="5" matInput placeholder="About My Family" [(ngModel)]="profile.description"></textarea>
+      <mat-icon matSuffix matTooltip="Please enter a brief description about your family and describe your ideal Day Share Group." color="primary">info outline</mat-icon>
+    </mat-form-field>
+  </div>
+</div>

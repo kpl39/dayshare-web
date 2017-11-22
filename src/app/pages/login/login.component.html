@@ -1,3 +1,28 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <form [formGroup]="loginForm">
+    <div class="form-container">
+      <h1 class="purple-primary">Log In</h1>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Email Address" formControlName="email" [(ngModel)]="loginData.email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="loginData.password">
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <button mat-raised-button class="full-width white-text button-spacing" color="primary" [disabled]="!formValid()" (click)="loginWithEmail()">
+        <i class="mdi mdi-email mdi-24px"></i>
+        Log In with Email
+      </button>
+      <button mat-raised-button class="full-width facebook white-text button-spacing" (click)="loginWithFacebook()">
+        <i class="mdi mdi-facebook-box mdi-24px"></i>
+         Log In with Facebook
+      </button>
+      <button mat-raised-button class="full-width google white-text button-spacing" (click)="loginWithGoogle()">
+        <i class="mdi mdi-google mdi-24px iconAlign"></i>
+        Log In with Google
+      </button>
+    </div>
+  </form>
+</div>

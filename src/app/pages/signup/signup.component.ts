@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit {
             console.log('check email status facebook', status);
             if (userExists) {
               this.getAuth();
-              this.router.navigate(['/profile']);
+              this.router.navigate(['/dashboard']);
             } else {
               const pkg = {
                 email: res.user.email,
@@ -106,7 +106,7 @@ export class SignupComponent implements OnInit {
             console.log('check email status google', status);
             if (userExists) {
               this.getAuth();
-              this.router.navigate(['/profile']);
+              this.router.navigate(['/dashboard']);
             } else {
 
               const pkg = {
@@ -114,7 +114,7 @@ export class SignupComponent implements OnInit {
                 profileImageUrl: res.user.photoURL,
                 googleId: res.additionalUserInfo.profile.id,
                 username: res.user.displayName,
-                userId: res.user.uid
+                userid: res.user.uid
               };
               this.dataService.setSignupData(pkg);
               this.router.navigate(['/signupdetails']);

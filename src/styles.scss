@@ -120,6 +120,13 @@ body {
   background: tomato;
 }
 
+.loading-icon {
+  margin: auto;
+  width: 260px;
+  height: 260px;
+  background-image: url(https://s3.us-east-2.amazonaws.com/dayshare/images/dayShareLoading.gif);
+}
+
 
 /* --------------------------
   Media Queries

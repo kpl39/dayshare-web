@@ -10,7 +10,7 @@
     <li><a routerLink="/home">Home</a></li>
     <li><a routerLink="/about">About</a></li>
     <li *ngIf="!checkAuth()"><a routerLink="/signup"><strong>Sign Up</strong></a></li>
-    <li *ngIf="checkAuth()"><a routerLink="/profile">Profile</a></li>
+    <li *ngIf="checkAuth()"><a routerLink="dashboard">Dashboard</a></li>
     <li *ngIf="!checkAuth()"><a routerLink="/login">Log In</a></li>
     <li *ngIf="checkAuth()"><a (click)="logout()" class="logout">Log Out</a></li>
   </ul>

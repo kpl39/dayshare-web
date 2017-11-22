@@ -25,8 +25,7 @@
     </mat-form-field>
     <mat-form-field class="input-width">
       <mat-select placeholder="Child's Age" [(ngModel)]="selectedAge">
-        <mat-option value="1">Less than 12 months</mat-option>
-        <mat-option value="2">Bewteen 12 and 24 months</mat-option>
+        <mat-option *ngFor="let age of ages" [value]="age.value">{{age.label}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-icon-button (click)="submitSearch()">

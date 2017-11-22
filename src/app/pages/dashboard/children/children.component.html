@@ -1,0 +1,61 @@
+<div class="container">
+  <div [hidden]="children" class="loading-icon"></div>
+  <div class="children-container" *ngIf="children">
+    <mat-tab-group>
+      <mat-tab *ngFor="let child of children; let childIndex = index">
+        <ng-template mat-tab-label>{{child.firstName}}</ng-template>
+        <div class="form-container">
+          <h3 class="purple-primary">Required Information</h3>
+          <mat-form-field >
+            <input matInput placeholder="First Name" [(ngModel)]="child.firstName">
+          </mat-form-field>
+
+          <mat-form-field >
+            <input matInput placeholder="Last Name" [(ngModel)]="child.lastName">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Gender" [(ngModel)]="child.gender">
+              <mat-option value="M">Boy</mat-option>
+              <mat-option value="F">Girl</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="child.birthDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <h3 class="purple-primary small-margin">Additional Information</h3>
+          <p class="small-margin">Here you can add things like dietary restrictions, allergies, medications, favorite toys, etc.</p>
+              <mat-card class="meta-card-container" *ngFor="let metaItem of child.childMetadata; let metaIndex = index">
+                <mat-card-title class="pink">{{metaItem.metadataCategory.name}}
+                  <mat-icon (click)="deleteMeta(childIndex, metaIndex)" color="warn" class="edit-icon">delete</mat-icon>
+                  <mat-icon (click)="toggleEdit(childIndex, metaIndex)" color="accent" class="edit-icon">edit</mat-icon>
+                </mat-card-title>
+                <mat-form-field *ngIf="metaItem.active || metaItem.metadataCategory.name == '' ">
+                  <mat-select placeholder="Category" [(ngModel)]="metaItem.metadataCategory" (ngModelChange)="toggleEdit(childIndex, metaIndex)">
+                    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!--<mat-form-field>-->
+                  <!--<input matInput placeholder="Category" [(ngModel)]="metaItem.metadataCategory.name" (keyup)="filter(childIndex, metaIndex)">-->
+                  <!--<mat-list *ngIf="filteredCategories.length > 0 && metaItem.active" class="list-container">-->
+                    <!--<mat-list-item *ngFor="let category of filteredCategories" (click)="select(childIndex, metaIndex, category)" class="list-item" >-->
+                      <!--<a>{{category.name}}</a>-->
+                    <!--</mat-list-item>-->
+                  <!--</mat-list>-->
+                <!--</mat-form-field>-->
+                <mat-form-field>
+                  <input matInput placeholder="Name" [(ngModel)]="metaItem.name">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Description" [(ngModel)]="metaItem.description">
+                </mat-form-field>
+              </mat-card>
+              <button mat-raised-button color="primary" (click)="addNewMetadata(childIndex)">Add Information</button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
