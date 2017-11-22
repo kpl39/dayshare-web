@@ -58,7 +58,8 @@ export class EditProfileComponent implements OnInit {
     console.log('FILES', files);
     const reader: FileReader = new FileReader();
 
-    if (files[0].type === 'image/png' || files[0].type === 'image/gif' || files[0].type === 'image/jpg') {
+    // if (files[0].type === 'image/png' || files[0].type === 'image/gif' || files[0].type === 'image/jpg') {
+    if (true) {
       this.validFile = true;
       reader.onloadend = (e) => {
         this.profile.profileImageUrl = reader.result;
