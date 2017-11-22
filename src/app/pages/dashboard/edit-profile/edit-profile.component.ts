@@ -63,11 +63,8 @@ export class EditProfileComponent implements OnInit {
       this.validFile = true;
       reader.onloadend = (e) => {
         this.profile.profileImageUrl = reader.result;
-      }
-
+      };
       reader.readAsDataURL(files[0]);
-    }  else {
-      this.validFile = false;
     }
   }
 
