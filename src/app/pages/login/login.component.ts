@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithEmail() {
-    this.authService.loginEmailUser(this.loginData.email, this.loginData.password)
+    const email = this.loginData.email.toLowerCase();
+    this.authService.loginEmailUser(email, this.loginData.password)
       .then((res) => {
         this.dataService.setLoginData(res);
         this.router.navigate(['/dashboard']);
