@@ -22,7 +22,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="child.birthDate">
+            <input matInput placeholder="Birth Date" [matDatepicker]="picker" [(ngModel)]="child.birthDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -47,13 +47,13 @@
                   <!--</mat-list>-->
                 <!--</mat-form-field>-->
                 <mat-form-field>
-                  <input matInput placeholder="Name" [(ngModel)]="metaItem.name">
+                  <input matInput placeholder={{metaItem.metadataCategory.nameFieldTitle}} [(ngModel)]="metaItem.name">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="Description" [(ngModel)]="metaItem.description">
+                  <input matInput placeholder={{metaItem.metadataCategory.descFieldTitle}} [(ngModel)]="metaItem.description">
                 </mat-form-field>
               </mat-card>
-              <button mat-raised-button color="primary" (click)="addNewMetadata(childIndex)">Add Information</button>
+              <button mat-raised-button color="primary" class="add-info-button" (click)="addNewMetadata(childIndex)">Add Information</button>
         </div>
       </mat-tab>
     </mat-tab-group>

@@ -1,3 +1,43 @@
-<p *ngIf="username">
-  username: {{username}}
-</p>
+<div class="container">
+  <mat-card class="full-width" *ngIf="profile">
+    <div class="card-header">
+      <h1 class="purple-primary">{{profile.username}}</h1>
+      <p class="grey-content">{{profile.description}}</p>
+      <div class="picture-map-container">
+        <div class="profile-image-container">
+          <img src={{profile.profileImageUrl}} class="profile-image">
+        </div>
+        <div class="map-container">
+          <agm-map
+            [latitude]="profile.latitude"
+            [longitude]="profile.longitude"
+            [zoom]="zoom">
+              <agm-circle
+                [latitude]="profile.latitude"
+                [longitude]="profile.longitude"
+                [radius]="radius"
+                [fillColor]="fillColor"
+                [fillOpacity]="fillOpacity"
+                [strokeColor]="strokeColor"
+                [strokeOpacity]="strokeOpacity">
+              </agm-circle>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+
+    <div class="child-header">
+      <h2 class="purple-accent">Child Information</h2>
+      <div *ngFor="let child of profile.children" class="child-container">
+        <p class="grey-content">{{gender(child.gender)}}</p>
+        <p class="grey-content">{{convertChildDate(child.birthDate)}}</p>
+      </div>
+    </div>
+
+    <div class="availability-container">
+    
+    </div>
+
+  </mat-card>
+
+</div>

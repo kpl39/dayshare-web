@@ -1,0 +1,41 @@
+.full-width {
+  width: 100%;
+}
+
+.child-container {
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #CE9CE8;
+}
+
+.picture-map-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+agm-map {
+  height: 300px;
+  width: 300px;
+}
+
+.profile-image {
+  height: 300px;
+  width: 300px;
+}
+
+
+
+/* Media Queries */
+
+@media (min-width: 769px) {
+  .picture-map-container {
+    flex-direction: row;
+  }
+
+  .profile-image-container {
+    margin-right: auto;
+  }
+
+}

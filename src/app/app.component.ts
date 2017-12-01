@@ -14,7 +14,11 @@ export class AppComponent {
   constructor(
     private authService: AuthService
   ) {
-    this.authService.getAuthState();
+    this.authService.getAuthState()
+      .then((res: any) => {
+        console.log('res app component', res);
+        this.authService.getParentProfileByUserId(res.uid);
+      });
   }
 
 

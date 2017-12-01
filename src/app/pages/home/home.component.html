@@ -19,13 +19,23 @@
 
 <div class="container">
     <!--<mat-icon matTooltip="Your address will not be shared until you are matched with a group">info</mat-icon>-->
-    <mat-form-field class="input-width">
+    <mat-form-field class="input-width addressCol">
       <input matInput placeholder="enter your home address" name="address" autocorrect="off" autocapitalize="off" spellcheck="off" class="search-bar address-input" #search pInputText [formControl]="searchControl">
       <mat-icon matSuffix matTooltip="Your address will not be shared until you are matched with a group" color="primary">info outline</mat-icon>
     </mat-form-field>
-    <mat-form-field class="input-width">
+    <mat-form-field class="input-width smallCol">
       <mat-select placeholder="Child's Age" [(ngModel)]="selectedAge">
         <mat-option *ngFor="let age of ages" [value]="age.value">{{age.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-width smallCol">
+      <mat-select placeholder="Age Range" [(ngModel)]="ageRange">
+        <mat-option *ngFor="let ageRange of ageRanges" [value]="ageRange.value">{{ageRange.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-width smallCol">
+      <mat-select placeholder="Distance" [(ngModel)]="distance">
+        <mat-option *ngFor="let distance of distances" [value]="distance.value">{{distance.label}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-icon-button (click)="submitSearch()">
