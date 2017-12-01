@@ -17,7 +17,10 @@ export class AppComponent {
     this.authService.getAuthState()
       .then((res: any) => {
         console.log('res app component', res);
-        this.authService.getParentProfileByUserId(res.uid);
+        if (res) {
+          this.authService.getParentProfileByUserId(res.uid);
+        }
+
       });
   }
 

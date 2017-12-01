@@ -86,7 +86,8 @@ const firebaseConfig = {
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBgDUBNc6OE2KYBLSPo2DdcYwLUbiC5nfk'
+      apiKey: 'AIzaSyBgDUBNc6OE2KYBLSPo2DdcYwLUbiC5nfk',
+      libraries: ['places']
     }),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig, 'dayshare'),
