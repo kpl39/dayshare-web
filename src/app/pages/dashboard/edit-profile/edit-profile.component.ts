@@ -3,6 +3,8 @@ import { RouterDataService } from '../../../services/router-data.service';
 import { ImageService} from '../../../services/image.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ParentService } from '../../../services/parent.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,12 +17,15 @@ export class EditProfileComponent implements OnInit {
   parentForm: any;
   avatarFinished: Boolean = false;
   validFile: Boolean;
+  profileOriginal: any;
+  formValid: Boolean = false;
 
   constructor(
     private dataService: RouterDataService,
     private imageService: ImageService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private parentService: ParentService
   ) {
       if (this.dataService.profile) {
         this.profile = this.dataService.profile;
@@ -28,6 +33,7 @@ export class EditProfileComponent implements OnInit {
       this.dataService.profileDataLoaded.subscribe((profile) => {
         console.log('profile change', profile);
         this.profile = profile;
+        this.profileOriginal = Object.assign({}, profile);
       });
   }
 
@@ -43,7 +49,8 @@ export class EditProfileComponent implements OnInit {
         address2: [''],
         city: ['', Validators.required],
         state: ['', Validators.required],
-        zipcode: ['', Validators.required]
+        zipcode: ['', Validators.required],
+        description: ['', Validators.required]
       }
     );
   }
@@ -80,6 +87,19 @@ export class EditProfileComponent implements OnInit {
         this.avatarFinished = true;
         console.log('res from update profile in component', res);
       });
+  }
+
+  changesValid() {
+    this.formValid = this.parentForm.valid && !_.isEqual(this.profile, this.profileOriginal) ? true : false;
+    console.log("Form Valid? ", this.formValid);
+  }
+
+  updateProfile() {
+    console.log('Save Changes', this.profile);
+    this.parentService.updateParentProfile(this.profile)
+      .then((updatedProfile) => {
+        this.profile = updatedProfile;
+      })
   }
 
 }

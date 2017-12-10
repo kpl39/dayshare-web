@@ -51,10 +51,16 @@
       <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
         <div fxFlex="50%" fxFlexOrder="1" class="details-container">
           <h2><a routerLink="/profile/{{result._source.username}}">{{result._source.username}}</a></h2>
-          <h4>Child's Age(s): 3 years old</h4>
+          <div class="child-header">
+            <h2 class="purple-accent">Child Information</h2>
+            <div *ngFor="let birthdate of result._source.birthdates" class="child-container">
+              <p class="grey-content">{{convertChildDate(birthdate)}}</p>
+            </div>
+          </div>
           <!--<p>{{result._source.description}}</p>-->
           <p><strong>{{result.sort[0].toFixed(1)}} miles away</strong><p>
-          <button mat-raised-button color="primary">See Profile</button>
+          <button mat-raised-button color="primary" routerLink="/profile/{{result._source.username}}">See Profile</button>
+          <button mat-raised-button color="accent" *ngIf="authenticated" (click)="openContact(result)">Contact</button>
         </div>
         <div fxFlex="50%" fxFlexOrder="2" class="image-container">
           <img src="http://dummyimage.com/200x200.png/cc0000/ffffff" class="card-image">

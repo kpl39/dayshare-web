@@ -29,7 +29,6 @@ export class ChildService {
     const yearMs = 31536000000;
 
     const age = difference / yearMs;
-    console.log('age', age);
     let ageString;
 
     if (age < 1) {

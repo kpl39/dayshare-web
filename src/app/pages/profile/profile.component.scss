@@ -13,7 +13,14 @@
   flex-direction: column;
 }
 
+.availability-container {
+  display: flex;
+  flex-direction: column;
+}
 
+.contact-button {
+  float: right;
+}
 
 agm-map {
   height: 300px;
@@ -25,6 +32,10 @@ agm-map {
   width: 300px;
 }
 
+.availability-card {
+  width: 90%;
+  margin: 5px;
+}
 
 
 /* Media Queries */
@@ -36,6 +47,10 @@ agm-map {
 
   .profile-image-container {
     margin-right: auto;
+  }
+
+  .availability-container {
+    flex-direction: row;
   }
 
 }

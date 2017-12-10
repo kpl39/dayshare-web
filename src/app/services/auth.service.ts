@@ -140,7 +140,7 @@ export class AuthService {
   getParentInfo(email) {
     return new Promise(resolve => {
       this.http.get('https://server.dayshare.co/parents/search/findByEmail?email=' + email + '&projection=parentFullProjection')
-      // this.http.get('http://localhost:8080/parents/search/findByEmail?email=' + email + '&projection=parentFullProjection')
+      //this.http.get('http://localhost:8080/parents/search/findByEmail?email=' + email + '&projection=parentFullProjection')
         .subscribe((res: any) => {
           this.profile = res._embedded.parents[0];
           resolve(this.profile);
@@ -150,7 +150,7 @@ export class AuthService {
 
   getParentProfileByUsername(username) {
     return new Promise(resolve => {
-      // this.http.get('http://localhost:8080/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
+      //this.http.get('http://localhost:8080/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
       this.http.get('https://server.dayshare.co/parents/search/findByUserName?username=' + username + '&projection=parentFullProjection')
         .subscribe((res: any) => {
           this.profile = res._embedded.parents[0];

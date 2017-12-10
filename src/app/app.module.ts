@@ -5,7 +5,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule,
          MatTooltipModule, MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule,
-         MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatTabsModule, MatListModule } from '@angular/material';
+         MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatTabsModule, MatListModule,
+         MatSidenavModule } from '@angular/material';
 import { RouterModule, Routes, ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -35,6 +36,10 @@ import { ImageService } from './services/image.service';
 import { ChildService } from './services/child.service';
 import { ParentService } from './services/parent.service';
 import { GroupService } from './services/group.service';
+import { ContactModalComponent } from './pages/modals/contact-modal/contact-modal.component';
+import { MessageService } from './services/message.service';
+import { AvailabilityService } from './services/availability.service';
+import { MessagingComponent } from './pages/dashboard/messaging/messaging.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -48,6 +53,7 @@ const appRoutes: Routes = [
       { path: 'editprofile', component: EditProfileComponent },
       { path: 'children', component: ChildrenComponent },
       { path: 'group', component: GroupComponent },
+      { path: 'messaging', component: MessagingComponent },
       { path: 'settings', component: SettingsComponent},
       { path: 'help', component: HelpComponent},
       { path: '', redirectTo: 'editprofile', pathMatch: 'full' },
@@ -82,7 +88,12 @@ const firebaseConfig = {
     ChildrenComponent,
     GroupComponent,
     SettingsComponent,
-    HelpComponent
+    HelpComponent,
+    ContactModalComponent,
+    MessagingComponent
+  ],
+  entryComponents: [
+    ContactModalComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -97,11 +108,11 @@ const firebaseConfig = {
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule, MatInputModule, MatIconModule, MatTooltipModule,
     MatGridListModule, MatExpansionModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule,
-    MatRadioModule, MatTabsModule, MatListModule,
+    MatRadioModule, MatTabsModule, MatListModule, MatSidenavModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule
   ],
-  providers: [ AuthService, SearchService, RouterLink, RouterDataService, ImageService, ChildService, ParentService, GroupService ],
+  providers: [ AuthService, SearchService, RouterLink, RouterDataService, ImageService, ChildService, ParentService, GroupService, MessageService, AvailabilityService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

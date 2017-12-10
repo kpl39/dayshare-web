@@ -1,0 +1,12 @@
+<div class="message-sent" *ngIf="messageSent">
+  <h2 class="purple-primary"> <mat-icon class="green">done</mat-icon> Message Sent!</h2>
+</div>
+<div class="contact-modal" *ngIf="!messageSent">
+  <form [formGroup]="contactForm" *ngIf="data">
+    <h2 class="purple-accent">Send a Message to {{data.username}}</h2>
+      <mat-form-field class="full-width">
+        <textarea rows="5" matInput placeholder="Message" formControlName="messageBody"  [(ngModel)]="messageBody"></textarea>
+      </mat-form-field>
+  </form>
+  <button mat-raised-button [disabled]="!contactForm.valid" (click)="sendMessage()">Send</button>
+</div>

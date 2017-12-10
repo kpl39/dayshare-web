@@ -1,6 +1,7 @@
 <div class="container">
   <mat-card class="full-width" *ngIf="profile">
     <div class="card-header">
+      <button mat-raised-button color="accent" class="contact-button" *ngIf="authenticated" (click)="openContact()"><mat-icon>mail outline</mat-icon> Contact</button>
       <h1 class="purple-primary">{{profile.username}}</h1>
       <p class="grey-content">{{profile.description}}</p>
       <div class="picture-map-container">
@@ -34,9 +35,16 @@
       </div>
     </div>
 
-    <div class="availability-container">
-
+    <div *ngIf="availability">
+      <h2 class="purple-primary">Availability</h2>
+      <div class="availability-container">
+        <mat-card *ngFor="let day of week" class="availability-card">
+          <h3 class="purple-primary card-header">{{day.day}}</h3>
+          <p>{{day.preference}}</p>
+        </mat-card>
+      </div>
     </div>
+   
 
   </mat-card>
 

@@ -1,8 +1,13 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { SearchService } from '../../services/search.service';
+import { ChildService } from '../../services/child.service';
+import { ContactModalComponent } from '../modals/contact-modal/contact-modal.component';
+import { AuthService } from '../../services/auth.service';
+import { RouterDataService } from '../../services/router-data.service';
 import 'hammerjs';
 
 
@@ -23,18 +28,28 @@ export class HomeComponent implements OnInit {
   public results: any;
   public ageRange: number;
   public ageRanges: Array<any> = [{value: 1, label: 'Within 1 Year'}, {value: 2, label: 'Within 2 Years'}, {value: 3, label: '3 or More Years'}];
+  private userAuth: any;
+  private authenticated: Boolean;
+
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
+  private profile: any;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private childService: ChildService,
+    private matDialog: MatDialog,
+    private authService: AuthService,
+    private dataService: RouterDataService
   ) { }
 
   ngOnInit() {
     this.searchControl = new FormControl();
+
+
 
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -51,6 +66,9 @@ export class HomeComponent implements OnInit {
         });
       });
     });
+
+
+    this.getAuth();
   }
 
   toggleAdvOpts() {
@@ -79,6 +97,43 @@ export class HomeComponent implements OnInit {
       .then((res: any) => {
         this.results = res.hits.hits;
         console.log('Results', this.results);
+      });
+  }
+
+  convertChildDate(date) {
+    return this.childService.convertChildDate(date);
+  }
+
+  openContact(parent) {
+    console.log("Open contact", parent);
+
+    let pkg = {senderId: this.profile.parentId, recipientId: parent._source.parent_id, username: parent._source.username};
+    let dialog = this.matDialog.open(ContactModalComponent, 
+      {data: pkg, width: '500px'});
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+    });
+  }
+
+  getAuth() {
+    this.authService.getAuthState()
+      .then((user: any) => {
+        if (this.authService.authenticated) {
+          this.authenticated = true;
+          if (!this.dataService.getProfile()) {
+            this.authService.getParentProfileByUserId(user.uid)
+              .then((profile) => {
+                this.profile = profile;
+                this.dataService.setProfile(profile);
+              });
+          } else {
+            this.profile = this.dataService.getProfile();
+          }
+        } else {
+          this.authenticated = false;
+        }
+        this.userAuth = user;
       });
   }
 

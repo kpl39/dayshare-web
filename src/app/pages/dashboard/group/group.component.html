@@ -12,4 +12,6 @@
       </mat-radio-group>
     </mat-card>
   </div>
+  <button mat-raised-button color="primary" *ngIf="newAvailability" (click)="setAvailability()">Submit</button>
+  <button mat-raised-button color="primary" *ngIf="!newAvailability" (click)="updateAvailability()">Save</button>
 </div>

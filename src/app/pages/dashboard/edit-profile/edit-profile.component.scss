@@ -22,6 +22,7 @@
 }
 
 .secondary-image-container {
+  width: 200px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -43,9 +44,10 @@ input[type="file"] {
 
 .profile-image {
   width: 200px;
+  margin-bottom: 5px;
 }
 
-.change-image-buton {
+.change-image-button {
   width: 200px;
   margin-bottom: 5px;
 }

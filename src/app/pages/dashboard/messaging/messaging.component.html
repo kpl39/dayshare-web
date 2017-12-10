@@ -1,0 +1,49 @@
+<div class="container">
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" position="end">
+      <h1 class="purple-accent">Contacts</h1>
+      <mat-card class="contact-card">
+          <mat-card-header>
+            <img mat-card-avatar src="https://s3.us-east-2.amazonaws.com/dayshare/images/dayShareStockProfile.png">
+            <mat-card-title class="contact-card-title">Suzy Q</mat-card-title>
+            <mat-card-subtitle class="green">Online</mat-card-subtitle>
+          </mat-card-header>
+      </mat-card>
+    </mat-drawer>
+    <!-- <div class="container"> -->
+      <div class="card-container">
+        <mat-card class="convo-container">
+          <table style="width:100%;">
+            <tr>
+              <td style="width:10%;">
+                  <button mat-icon-button color="accent" (click)="drawer.toggle()">
+                    <mat-icon>contacts</mat-icon>
+                  </button>
+                </td>
+              <td style="width:90%;">
+                <h3 class="purple-primary">Conversation with Suzy Q</h3>
+              </td>
+            </tr>
+          </table>
+            
+            <div *ngFor="let message of conversation" [ngClass]="{'primary-container': message.senderId == primary, 'secondary-container': message.senderId != primary}">
+              <p>{{message.dateTime | date:'fullDate'}}</p>
+              <mat-card [ngClass]="{'primary': message.senderId == primary, 'secondary': message.senderId != primary}">
+                <p>{{message.messageText}}</p>
+              </mat-card>
+            </div>
+        </mat-card>
+      </div>
+    <!-- </div> -->
+  </mat-drawer-container>
+</div>
+  <!-- <div class="container">
+    <mat-card class="convo-container">
+      <div *ngFor="let message of conversation" [ngClass]="{'primary-container': message.senderId == primary, 'secondary-container': message.senderId != primary}">
+        <p>{{message.dateTime | date:'fullDate'}}</p>
+        <mat-card [ngClass]="{'primary': message.senderId == primary, 'secondary': message.senderId != primary}">
+          <p>{{message.messageText}}</p>
+        </mat-card>
+      </div>
+      </mat-card>
+  </div> -->
